@@ -70,7 +70,7 @@ def is_adult?(age)
     return false
   end
 end
-
+#can be reduced like the follow
 def is_adult?(age)
   age >= 18
 end
@@ -84,6 +84,8 @@ aa = aa.reverse;
 p aa
 aa.reverse!
 p aa
+
+
 class Animal
     def sleep
         puts "zzz"
@@ -93,4 +95,72 @@ class Cat < Animal
 end
 kitty=Cat.new
 kitty.sleep
-p kitty.class
+p kitty.class#內建方法
+
+#3/6
+class Cat 
+    def initialize(name)
+        @name=name
+    end
+    #p kitty.name will go wrong without the follow lines
+    def name
+        return @name
+    end
+    #kitty.name='nancy' will go wrong without the follow lines
+    def name=(new_name)
+        @name = new_name
+    end
+end
+kitty=Cat.new('kk')
+p kitty.name
+kitty.name = 'nancy'
+p kitty.name
+class Girl
+    attr_accessor :age
+    #age()
+    #age=()
+    #@age
+    def age=(new_age)
+        if new_age>18
+            @age=18
+        else
+            @edge=new_age
+        end
+    end
+end
+
+g=Girl.new
+g.age = 20
+p g.age
+
+def g.shopping
+    puts "buy"
+end
+g.shopping
+#g2=Girl.new
+#g2.shopping will not work
+
+class String
+    def is_email?
+        true
+    end
+end
+#if is_email("aaa@aa.cc")
+if "aaa@aa.cc".is_email?
+    puts "yes!"
+end
+
+class Fixnum
+    alias :old_plus :+
+    def +(n)
+        puts "hello hello"
+        self.old_plus(n)
+    end
+end
+p 1 + 2
+#sometimes go wrong
+#class BookList < (rand > 0.1) ? Array : Hash
+#end
+
+#b = BookList.new
+#b << "Ruby"
